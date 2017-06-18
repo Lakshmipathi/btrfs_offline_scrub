@@ -1,0 +1,393 @@
+$TEST_DEV not given, use /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/test/test.img as fallback
+############### losetup --find --show img1
+/dev/loop0
+############### losetup --find --show img2
+/dev/loop1
+############### losetup --find --show img3
+/dev/loop2
+############### /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/mkfs.btrfs -f -d raid5 -m raid5 /dev/loop0 /dev/loop1 /dev/loop2
+btrfs-progs v3.18-rc1-1924-g07ea395
+See http://btrfs.wiki.kernel.org for more information.
+
+Performing full device TRIM /dev/loop0 (512.00MiB) ...
+Performing full device TRIM /dev/loop1 (512.00MiB) ...
+Performing full device TRIM /dev/loop2 (512.00MiB) ...
+Label:              (null)
+UUID:               16fa8c93-10f8-48af-a919-1643e849b568
+Node size:          16384
+Sector size:        4096
+Filesystem size:    1.50GiB
+Block group profiles:
+  Data:             RAID5           128.00MiB
+  Metadata:         RAID5           102.38MiB
+  System:           RAID5            16.00MiB
+SSD detected:       no
+Incompat features:  extref, raid56, skinny-metadata
+Number of devices:  3
+Devices:
+   ID        SIZE  PATH
+    1   512.00MiB  /dev/loop0
+    2   512.00MiB  /dev/loop1
+    3   512.00MiB  /dev/loop2
+
+############### mount /dev/loop0 /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+############### umount /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+Corrupting /dev/loop0 at position 83099648 	which has D1xxxxxxxxxxxxxx
+Found on-disk value: D1xxxxxxxxxxxxxx 
+Corruption completed at 83099648
+############### btrfs scrub start --offline /dev/loop0
+ERROR: data at bytenr 145293312 mirror 0 csum mismatch, have 0x790f1fe1 expect 0xa30cb5c5
+full stripe 145227776 REPARIED: corrupted data with good P/Q, repaired
+Scrub result:
+Tree bytes scrubbed: 131072
+Tree extents scrubbed: 8
+Data bytes scrubbed: 192512
+Data extents scrubbed: 3
+Data bytes without csum: 131072
+Read error: 0
+Verify error: 0
+Csum error: 1
+############### mount /dev/loop0 /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+Scrub corrected value: D1xxxxxxxxxxxxxx
+Parity stripe check passed.
+############### umount /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+############### losetup -d /dev/loop0
+############### losetup -d /dev/loop1
+############### losetup -d /dev/loop2
+############### losetup --all
+############### losetup --find --show img1
+/dev/loop0
+############### losetup --find --show img2
+/dev/loop1
+############### losetup --find --show img3
+/dev/loop2
+############### /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/mkfs.btrfs -f -d raid5 -m raid5 /dev/loop0 /dev/loop1 /dev/loop2
+btrfs-progs v3.18-rc1-1924-g07ea395
+See http://btrfs.wiki.kernel.org for more information.
+
+Performing full device TRIM /dev/loop0 (512.00MiB) ...
+Performing full device TRIM /dev/loop1 (512.00MiB) ...
+Performing full device TRIM /dev/loop2 (512.00MiB) ...
+Label:              (null)
+UUID:               3c115adb-5dd2-452f-83b6-73fddc66df6c
+Node size:          16384
+Sector size:        4096
+Filesystem size:    1.50GiB
+Block group profiles:
+  Data:             RAID5           128.00MiB
+  Metadata:         RAID5           102.38MiB
+  System:           RAID5            16.00MiB
+SSD detected:       no
+Incompat features:  extref, raid56, skinny-metadata
+Number of devices:  3
+Devices:
+   ID        SIZE  PATH
+    1   512.00MiB  /dev/loop0
+    2   512.00MiB  /dev/loop1
+    3   512.00MiB  /dev/loop2
+
+############### mount /dev/loop0 /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+############### umount /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+Corrupting /dev/loop0 at position 83165184 	which has D2xxxxxxxxxxxxxx
+Found on-disk value: D2xxxxxxxxxxxxxx 
+Corruption completed at 83165184
+############### btrfs scrub start --offline /dev/loop0
+ERROR: data at bytenr 145358848 mirror 0 csum mismatch, have 0x790f1fe1 expect 0xd4898196
+full stripe 145358848 REPARIED: corrupted data with good P/Q, repaired
+Scrub result:
+Tree bytes scrubbed: 131072
+Tree extents scrubbed: 8
+Data bytes scrubbed: 258048
+Data extents scrubbed: 3
+Data bytes without csum: 131072
+Read error: 0
+Verify error: 0
+Csum error: 1
+############### mount /dev/loop0 /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+Scrub corrected value: D2xxxxxxxxxxxxxx
+Parity stripe check passed.
+############### umount /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+############### losetup -d /dev/loop0
+############### losetup -d /dev/loop1
+############### losetup -d /dev/loop2
+############### losetup --all
+############### losetup --find --show img1
+/dev/loop0
+############### losetup --find --show img2
+/dev/loop1
+############### losetup --find --show img3
+/dev/loop2
+############### /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/mkfs.btrfs -f -d raid5 -m raid5 /dev/loop0 /dev/loop1 /dev/loop2
+btrfs-progs v3.18-rc1-1924-g07ea395
+See http://btrfs.wiki.kernel.org for more information.
+
+Performing full device TRIM /dev/loop0 (512.00MiB) ...
+Performing full device TRIM /dev/loop1 (512.00MiB) ...
+Performing full device TRIM /dev/loop2 (512.00MiB) ...
+Label:              (null)
+UUID:               334a0150-fe7c-4908-b466-154ddbb17f0a
+Node size:          16384
+Sector size:        4096
+Filesystem size:    1.50GiB
+Block group profiles:
+  Data:             RAID5           128.00MiB
+  Metadata:         RAID5           102.38MiB
+  System:           RAID5            16.00MiB
+SSD detected:       no
+Incompat features:  extref, raid56, skinny-metadata
+Number of devices:  3
+Devices:
+   ID        SIZE  PATH
+    1   512.00MiB  /dev/loop0
+    2   512.00MiB  /dev/loop1
+    3   512.00MiB  /dev/loop2
+
+############### mount /dev/loop0 /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+############### umount /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+Corrupting /dev/loop2 at position 63242240 	which has D3xxxxxxxxxxxxxx
+Found on-disk value: D3xxxxxxxxxxxxxx 
+Corruption completed at 63242240
+############### btrfs scrub start --offline /dev/loop0
+ERROR: data at bytenr 145424384 mirror 0 csum mismatch, have 0x790f1fe1 expect 0xf9f56da7
+full stripe 145358848 REPARIED: corrupted data with good P/Q, repaired
+Scrub result:
+Tree bytes scrubbed: 131072
+Tree extents scrubbed: 8
+Data bytes scrubbed: 323584
+Data extents scrubbed: 3
+Data bytes without csum: 131072
+Read error: 0
+Verify error: 0
+Csum error: 1
+############### mount /dev/loop0 /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+Scrub corrected value: D3xxxxxxxxxxxxxx
+Parity stripe check passed.
+############### umount /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+############### losetup -d /dev/loop0
+############### losetup -d /dev/loop1
+############### losetup -d /dev/loop2
+############### losetup --all
+############### losetup --find --show img1
+/dev/loop0
+############### losetup --find --show img2
+/dev/loop1
+############### losetup --find --show img3
+/dev/loop2
+############### /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/mkfs.btrfs -f -d raid5 -m raid5 /dev/loop0 /dev/loop1 /dev/loop2
+btrfs-progs v3.18-rc1-1924-g07ea395
+See http://btrfs.wiki.kernel.org for more information.
+
+Performing full device TRIM /dev/loop0 (512.00MiB) ...
+Performing full device TRIM /dev/loop1 (512.00MiB) ...
+Performing full device TRIM /dev/loop2 (512.00MiB) ...
+Label:              (null)
+UUID:               f454b9f5-a83d-4205-9916-809a939e800f
+Node size:          16384
+Sector size:        4096
+Filesystem size:    1.50GiB
+Block group profiles:
+  Data:             RAID5           128.00MiB
+  Metadata:         RAID5           102.38MiB
+  System:           RAID5            16.00MiB
+SSD detected:       no
+Incompat features:  extref, raid56, skinny-metadata
+Number of devices:  3
+Devices:
+   ID        SIZE  PATH
+    1   512.00MiB  /dev/loop0
+    2   512.00MiB  /dev/loop1
+    3   512.00MiB  /dev/loop2
+
+############### mount /dev/loop0 /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+############### umount /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+Corrupting /dev/loop1 at position 63373312 	which has D6xxxxxxxxxxxxxx
+Found on-disk value: D6xxxxxxxxxxxxxx 
+Corruption completed at 63373312
+############### btrfs scrub start --offline /dev/loop0
+ERROR: data at bytenr 145620992 mirror 0 csum mismatch, have 0x790f1fe1 expect 0x617a3152
+full stripe 145620992 REPARIED: corrupted data with good P/Q, repaired
+Scrub result:
+Tree bytes scrubbed: 131072
+Tree extents scrubbed: 8
+Data bytes scrubbed: 585728
+Data extents scrubbed: 3
+Data bytes without csum: 131072
+Read error: 0
+Verify error: 0
+Csum error: 1
+############### mount /dev/loop0 /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+Scrub corrected value: D6xxxxxxxxxxxxxx
+Parity stripe check passed.
+############### umount /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+############### losetup -d /dev/loop0
+############### losetup -d /dev/loop1
+############### losetup -d /dev/loop2
+############### losetup --all
+############### losetup --find --show img1
+/dev/loop0
+############### losetup --find --show img2
+/dev/loop1
+############### losetup --find --show img3
+/dev/loop2
+############### /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/mkfs.btrfs -f -d raid5 -m raid5 /dev/loop0 /dev/loop1 /dev/loop2
+btrfs-progs v3.18-rc1-1924-g07ea395
+See http://btrfs.wiki.kernel.org for more information.
+
+Performing full device TRIM /dev/loop0 (512.00MiB) ...
+Performing full device TRIM /dev/loop1 (512.00MiB) ...
+Performing full device TRIM /dev/loop2 (512.00MiB) ...
+Label:              (null)
+UUID:               95021548-63a6-498a-801b-b4d61719d234
+Node size:          16384
+Sector size:        4096
+Filesystem size:    1.50GiB
+Block group profiles:
+  Data:             RAID5           128.00MiB
+  Metadata:         RAID5           102.38MiB
+  System:           RAID5            16.00MiB
+SSD detected:       no
+Incompat features:  extref, raid56, skinny-metadata
+Number of devices:  3
+Devices:
+   ID        SIZE  PATH
+    1   512.00MiB  /dev/loop0
+    2   512.00MiB  /dev/loop1
+    3   512.00MiB  /dev/loop2
+
+############### mount /dev/loop0 /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+############### umount /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+Corrupting /dev/loop1 at position 63610880 	which has D10xxxxxxxxxxxxx
+Found on-disk value: D10xxxxxxxxxxxxx 
+Corruption completed at 63610880
+############### btrfs scrub start --offline /dev/loop0
+ERROR: data at bytenr 146055168 mirror 0 csum mismatch, have 0x790f1fe1 expect 0x9afc78d5
+full stripe 146014208 REPARIED: corrupted data with good P/Q, repaired
+Scrub result:
+Tree bytes scrubbed: 131072
+Tree extents scrubbed: 8
+Data bytes scrubbed: 868352
+Data extents scrubbed: 8
+Data bytes without csum: 131072
+Read error: 0
+Verify error: 0
+Csum error: 1
+############### mount /dev/loop0 /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+Scrub corrected value: D10xxxxxxxxxxxxx
+Parity stripe check passed.
+############### umount /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+############### losetup -d /dev/loop0
+############### losetup -d /dev/loop1
+############### losetup -d /dev/loop2
+############### losetup --all
+############### losetup --find --show img1
+/dev/loop0
+############### losetup --find --show img2
+/dev/loop1
+############### losetup --find --show img3
+/dev/loop2
+############### /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/mkfs.btrfs -f -d raid5 -m raid5 /dev/loop0 /dev/loop1 /dev/loop2
+btrfs-progs v3.18-rc1-1924-g07ea395
+See http://btrfs.wiki.kernel.org for more information.
+
+Performing full device TRIM /dev/loop0 (512.00MiB) ...
+Performing full device TRIM /dev/loop1 (512.00MiB) ...
+Performing full device TRIM /dev/loop2 (512.00MiB) ...
+Label:              (null)
+UUID:               42abe490-f782-4a4b-b410-8e8d2f0dd66a
+Node size:          16384
+Sector size:        4096
+Filesystem size:    1.50GiB
+Block group profiles:
+  Data:             RAID5           128.00MiB
+  Metadata:         RAID5           102.38MiB
+  System:           RAID5            16.00MiB
+SSD detected:       no
+Incompat features:  extref, raid56, skinny-metadata
+Number of devices:  3
+Devices:
+   ID        SIZE  PATH
+    1   512.00MiB  /dev/loop0
+    2   512.00MiB  /dev/loop1
+    3   512.00MiB  /dev/loop2
+
+############### mount /dev/loop0 /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+############### umount /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+Corrupting /dev/loop2 at position 63754240 	which has D14xxxxxxxxxxxxx
+Found on-disk value: D14xxxxxxxxxxxxx 
+Corruption completed at 63754240
+############### btrfs scrub start --offline /dev/loop0
+ERROR: data at bytenr 146329600 mirror 0 csum mismatch, have 0x790f1fe1 expect 0x65bb35b2
+full stripe 146276352 REPARIED: corrupted data with good P/Q, repaired
+Scrub result:
+Tree bytes scrubbed: 131072
+Tree extents scrubbed: 8
+Data bytes scrubbed: 1122304
+Data extents scrubbed: 6
+Data bytes without csum: 131072
+Read error: 0
+Verify error: 0
+Csum error: 1
+############### mount /dev/loop0 /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+Scrub corrected value: D14xxxxxxxxxxxxx
+Parity stripe check passed.
+############### umount /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+############### losetup -d /dev/loop0
+############### losetup -d /dev/loop1
+############### losetup -d /dev/loop2
+############### losetup --all
+############### losetup --find --show img1
+/dev/loop0
+############### losetup --find --show img2
+/dev/loop1
+############### losetup --find --show img3
+/dev/loop2
+############### /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/mkfs.btrfs -f -d raid5 -m raid5 /dev/loop0 /dev/loop1 /dev/loop2
+btrfs-progs v3.18-rc1-1924-g07ea395
+See http://btrfs.wiki.kernel.org for more information.
+
+Performing full device TRIM /dev/loop0 (512.00MiB) ...
+Performing full device TRIM /dev/loop1 (512.00MiB) ...
+Performing full device TRIM /dev/loop2 (512.00MiB) ...
+Label:              (null)
+UUID:               c24a87c5-21d9-4d3b-8a3b-573a780bea64
+Node size:          16384
+Sector size:        4096
+Filesystem size:    1.50GiB
+Block group profiles:
+  Data:             RAID5           128.00MiB
+  Metadata:         RAID5           102.38MiB
+  System:           RAID5            16.00MiB
+SSD detected:       no
+Incompat features:  extref, raid56, skinny-metadata
+Number of devices:  3
+Devices:
+   ID        SIZE  PATH
+    1   512.00MiB  /dev/loop0
+    2   512.00MiB  /dev/loop1
+    3   512.00MiB  /dev/loop2
+
+############### mount /dev/loop0 /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+############### umount /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+Corrupting /dev/loop0 at position 83980288 	which has D23xxxxxxxxxxxxx
+Found on-disk value: D23xxxxxxxxxxxxx 
+Corruption completed at 83980288
+############### btrfs scrub start --offline /dev/loop0
+ERROR: data at bytenr 146960384 mirror 0 csum mismatch, have 0x790f1fe1 expect 0xec7024d0
+full stripe 146931712 REPARIED: corrupted data with good P/Q, repaired
+Scrub result:
+Tree bytes scrubbed: 131072
+Tree extents scrubbed: 8
+Data bytes scrubbed: 2174976
+Data extents scrubbed: 7
+Data bytes without csum: 131072
+Read error: 0
+Verify error: 0
+Csum error: 1
+############### mount /dev/loop0 /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+Scrub corrected value: D23xxxxxxxxxxxxx
+Parity stripe check passed.
+############### umount /home/laks/centos/laks/BTRFS/scrub_offline/btrfs-progs/tests/mnt
+############### losetup -d /dev/loop0
+############### losetup -d /dev/loop1
+############### losetup -d /dev/loop2
+############### losetup --all
